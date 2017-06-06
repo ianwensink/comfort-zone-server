@@ -16,6 +16,7 @@
     "babel-cli": "^6.6.5",
     "babel-core": "^6.7.4",
     "babel-eslint": "^7.1.1",
+    "babel-preset-env": "^1.5.1",
     "babel-loader": "^6.4.1",
     "babel-plugin-object-assign": "^1.2.1",
     "babel-plugin-transform-proto-to-assign": "^6.4.0",
