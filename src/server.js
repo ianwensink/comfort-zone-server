@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(cors())
 
 app.get('/locations', (req, res) => {
-  fs.readFile('./example/points.json', 'utf8', function (err, data) {
+  fs.readFile('./points.json', 'utf8', function (err, data) {
     if (err) throw err;
     let pointsData = {};
     try {
@@ -22,7 +22,7 @@ app.get('/locations', (req, res) => {
 });
 
 app.post('/location', (req, res) => {
-  fs.readFile('./example/points.json', 'utf8', function (err, data) {
+  fs.readFile('./points.json', 'utf8', function (err, data) {
     if (err) throw err;
     try {
       const pointsData = JSON.parse(data);
@@ -32,7 +32,7 @@ app.post('/location', (req, res) => {
       const newPoints = [...points, Object.assign({}, req.body.location, { val: 999999999999 })];
       event.points = newPoints;
       fs.writeFile(
-        './example/points.json',
+        './points.json',
         JSON.stringify(pointsData),
         () => {},
         // () => console.info(`Wrote ${newPoints.length} locations to file`),
