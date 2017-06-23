@@ -41,6 +41,12 @@ app.get('/locations', (req, res) => {
     });
 });
 
+app.get('/events/:eventId', (req, res) => {
+  Event.findOne({ _id: req.params.eventId })
+    .exec()
+    .then(event => res.json(event));
+})
+
 app.post('/location', (req, res) => {
   // fs.readFile(pathToJson, 'utf8', (err, data) => {
   //   if(err) throw err;
