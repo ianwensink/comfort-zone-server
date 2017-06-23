@@ -2,10 +2,10 @@ const Location = require('./Location');
 const Event = require('./Event');
 const Point = require('./Point');
 
-function exampleData() {
-  Location.remove({});
-  Event.remove({});
-  Point.remove({});
+async function exampleData() {
+  await Location.remove({}, Promise.resolve);
+  await Event.remove({}, Promise.resolve);
+  await Point.remove({}, Promise.resolve);
 
   const london_bridge = new Location({
     key: 'london_bridge',
@@ -21,19 +21,23 @@ function exampleData() {
   london_eye.save();
 
   const event1 = new Event({
+    label: 'London Bridge attack June 3rd',
     center: {
       lat: 51.5065658,
-      lng: -0.0888643
+      lng: -0.0888643,
     },
     locations: [london_bridge._id],
+    timestamp: new Date('2017-06-03'),
   });
 
   const event2 = new Event({
+    label: 'Protest London Eye',
     center: {
-      lat: 51.50441518392566,
-      lng: -0.11436939239501955
+      lat: 51.503324,
+      lng: -0.119543,
     },
     locations: [london_eye._id],
+    timestamp: new Date('2017-05-23'),
   });
 
   event1.save();

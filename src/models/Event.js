@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const schema = Schema({
+  label: String,
   center: {
     lat: String,
     lng: String,
