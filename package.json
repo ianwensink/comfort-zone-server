@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "npm run serve",
-    "serve": "SERVER_ADDR=http://192.168.0.101:3000 babel-node src/server.js",
+    "serve": "babel-node src/server.js",
     "lint": "eslint -c ./.eslintrc.yaml ./src",
     "lint-fix": "eslint -c ./.eslintrc.yaml ./src --fix"
   },
