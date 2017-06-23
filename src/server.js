@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const Point = require('./models/Point');
+const Event = require('./models/Event');
 const exampleData = require('./models/example_data');
 
 const app = new Express();
@@ -20,15 +21,24 @@ app.get('/example_data', (req, res) => {
 });
 
 app.get('/locations', (req, res) => {
-  Point.find({})
-    .populate({
-      path: 'event',
-      populate: {
-        path: 'locations',
-      },
-    })
-    .exec()
-    .then(points => res.json(points));
+  const promises = [
+    Point.find({})
+      .exec(),
+    Event.find({})
+      // .populate('locations')
+      .exec(),
+  ];
+
+  const names = ['points', 'events'];
+
+  Promise.all(promises)
+    .then((response) => {
+      const data = {};
+      for(let i = 0; i < response.length; i++) {
+        data[names[i]] = response[i];
+      }
+      res.json(data);
+    });
 });
 
 app.post('/location', (req, res) => {
