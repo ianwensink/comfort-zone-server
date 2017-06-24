@@ -38,16 +38,26 @@ app.get('/locations', (req, res) => {
         data[names[i]] = response[i];
       }
       res.json(data);
-    });
+    })
+    .catch((e) => res.end('ERROR', 400));;
 });
 
 app.get('/events/:eventId', (req, res) => {
   Event.findOne({ _id: req.params.eventId })
     .exec()
-    .then(event => res.json(event));
-})
+    .then(event => res.json(event))
+    .catch((e) => res.end('ERROR', 400));
+});
+
+app.get('/events', (req, res) => {
+  Event.find({})
+    .exec()
+    .then(events => res.json(events))
+    .catch((e) => res.end('ERROR', 400));;
+});
 
 app.post('/location', (req, res) => {
+  res.end('ERROR', 400);
   // fs.readFile(pathToJson, 'utf8', (err, data) => {
   //   if(err) throw err;
   //   try {
