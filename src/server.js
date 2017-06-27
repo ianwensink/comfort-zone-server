@@ -51,6 +51,7 @@ app.get('/events/:eventId', (req, res) => {
 
 app.get('/events', (req, res) => {
   Event.find({})
+    .sort({ label: 1 })
     .exec()
     .then(events => res.json(events))
     .catch((e) => res.end('ERROR', 400));;
