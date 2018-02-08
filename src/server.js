@@ -20,7 +20,7 @@ app.get('/example_data', (req, res) => {
   res.end('OK', 200);
 });
 
-app.get('/locations', (req, res) => {
+app.get('/heatmap', (req, res) => {
   const promises = [
     Point.find({})
       .exec(),
@@ -39,7 +39,7 @@ app.get('/locations', (req, res) => {
       }
       res.json(data);
     })
-    .catch((e) => res.end('ERROR', 400));;
+    .catch((e) => res.end('ERROR', 400));
 });
 
 app.get('/events/:eventId', (req, res) => {
@@ -52,12 +52,21 @@ app.get('/events/:eventId', (req, res) => {
 app.get('/events', (req, res) => {
   Event.find({})
     .sort({ label: 1 })
+    .populate('locations')
     .exec()
     .then(events => res.json(events))
-    .catch((e) => res.end('ERROR', 400));;
+    .catch((e) => res.end('ERROR', 500));
 });
 
-app.post('/location', (req, res) => {
+app.get('/locations', (req, res) => {
+  Location.find({})
+    .sort({ label: 1 })
+    .exec()
+    .then(locations => res.json(locations))
+    .catch((e) => res.end('ERROR', 500));
+});
+
+app.post('/point', (req, res) => {
   res.end('ERROR', 400);
   // fs.readFile(pathToJson, 'utf8', (err, data) => {
   //   if(err) throw err;
