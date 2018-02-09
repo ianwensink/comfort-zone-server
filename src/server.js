@@ -25,7 +25,7 @@ app.get('/heatmap', (req, res) => {
     Point.find({})
       .exec(),
     Event.find({})
-      // .populate('locations')
+      .populate('locations')
       .exec(),
   ];
 
