@@ -3,47 +3,231 @@ const Event = require('./Event');
 const Point = require('./Point');
 
 async function exampleData() {
-  await Location.remove({}, Promise.resolve);
-  await Event.remove({}, Promise.resolve);
-  await Point.remove({}, Promise.resolve);
+  await Location.remove({}).exec();
+  await Event.remove({}).exec();
+  await Point.remove({}).exec();
 
   const london_bridge = new Location({
     key: 'london_bridge',
     label: 'London Bridge',
+    location: {
+      lat: 51.5078788,
+      lng: -0.0964868,
+    },
   });
 
   const london_eye = new Location({
     key: 'london_eye',
     label: 'London Eye',
+    location: {
+      lat: 51.503324,
+      lng: -0.1217317,
+    },
+  });
+
+  const big_ben = new Location({
+    key: 'big_ben',
+    label: 'Big Ben',
+    location: {
+      lat: 41.4036299,
+      lng: 2.1743558,
+    },
+  });
+
+  const sagrada = new Location({
+    key: 'sagrada',
+    label: 'The Sagrada Familia',
+    location: {
+      lat: 41.4036299,
+      lng: 2.1721671,
+    },
+  });
+
+  const dom_utrecht = new Location({
+    key: 'dom_tower_utrecht',
+    label: 'Dom Tower Utrecht',
+    location: {
+      lat: 52.0908102,
+      lng: 5.1196552,
+    },
+  });
+
+  const amsterdam_central = new Location({
+    key: 'amsterdam_central_station',
+    label: 'Amsterdam Central Station',
+    location: {
+      lat: 52.3791283,
+      lng: 4.8980833,
+    },
+  });
+
+  const dam_amsterdam = new Location({
+    key: 'dam_amsterdam',
+    label: 'Amsterdam Central Station',
+    location: {
+      lat: 52.3731513,
+      lng: 4.8915661,
+    },
+  });
+
+  const rambla = new Location({
+    key: 'rambla',
+    label: 'The Rambla',
+    location: {
+      lat: 41.381474,
+      lng: 2.1709648,
+    },
+  });
+
+  const times_square = new Location({
+    key: 'times_square',
+    label: 'Times Square',
+    location: {
+      lat: 40.758895,
+      lng: -73.9873197,
+    },
+  });
+
+  const empire_state = new Location({
+    key: 'empire_state',
+    label: 'Empire State Building',
+    location: {
+      lat: 40.7484405,
+      lng: -73.9878531,
+    },
   });
 
   london_bridge.save();
   london_eye.save();
+  big_ben.save();
+  sagrada.save();
+  dom_utrecht.save();
+  amsterdam_central.save();
+  dam_amsterdam.save();
+  dom_utrecht.save();
+  rambla.save();
+  times_square.save();
+  empire_state.save();
 
-  const event1 = new Event({
-    label: 'London Bridge attack June 3rd',
+  const london_bridge_attack = new Event({
+    label: 'London Bridge attack January 12th',
+    timestamp: '2018-01-12T15:00:00.000Z',
+    locations: [
+      london_bridge._id,
+    ],
     center: {
-      lat: 51.5065658,
-      lng: -0.0888643,
+      lat: '51.5065658',
+      lng: '-0.0888643',
     },
-    locations: [london_bridge._id],
-    timestamp: new Date('2017-06-03'),
   });
 
-  const event2 = new Event({
-    label: 'Protest London Eye',
+  const protest_london_eye = new Event({
+    label: 'Protest at London Eye',
+    timestamp: '2018-02-07T07:00:00.000Z',
+    locations: [
+      london_eye._id,
+    ],
     center: {
-      lat: 51.503324,
-      lng: -0.119543,
+      lat: '51.503324',
+      lng: '-0.119543',
     },
-    locations: [london_eye._id],
-    timestamp: new Date('2017-05-23'),
   });
 
-  event1.save();
-  event2.save();
+  const big_ben_circus = new Event({
+    label: 'Big Ben Pop-up circus',
+    timestamp: '2018-01-03T09:00:00.000Z',
+    locations: [
+      big_ben._id,
+    ],
+    center: {
+      lat: '51.5007325',
+      lng: '-0.1268141',
+    },
+  });
 
-  const points1 = [
+  const commemoration_day_dam = new Event({
+    label: 'Commemoration Day - Dam Amsterdam',
+    timestamp: '2017-05-04T20:00:00.000Z',
+    locations: [
+      dam_amsterdam._id,
+    ],
+    center: {
+      lat: '52.3728264',
+      lng: '4.8915122',
+    },
+  });
+
+  const strike_dam = new Event({
+    label: 'Strike FNV - Dam Amsterdam',
+    timestamp: '2017-12-31T12:00:00.000Z',
+    locations: [
+      dam_amsterdam._id,
+    ],
+    center: {
+      lat: '52.3728264',
+      lng: '4.8915122',
+    },
+  });
+
+  const liberation_day_dom = new Event({
+    label: 'Liberation Day festival - Dom Utrecht',
+    timestamp: '2017-05-05T18:00:00.000Z',
+    locations: [
+      dom_utrecht._id,
+    ],
+    center: {
+      lat: '52.090242,',
+      lng: '5.121500',
+    },
+  });
+
+  const acrobat_show_sagrada = new Event({
+    label: 'Acrobat show Sagrada Familia',
+    timestamp: '2018-02-07T11:00:00.000Z',
+    locations: [
+      sagrada._id,
+    ],
+    center: {
+      lat: '41.404499',
+      lng: '2.174452',
+    },
+  });
+
+  const demonstration_empire_state = new Event({
+    label: 'Demonstration Empire State Building',
+    timestamp: '2018-01-07T21:00:00.000Z',
+    locations: [
+      empire_state._id,
+    ],
+    center: {
+      lat: '40.749164',
+      lng: '-73.986355',
+    },
+  });
+
+  const traffic_accident_times_square = new Event({
+    label: 'Traffic Accident Times Square',
+    timestamp: '2018-01-03T09:00:00.000Z',
+    locations: [
+      times_square._id,
+    ],
+    center: {
+      lat: '40.7586233',
+      lng: '-73.9855862',
+    },
+  });
+
+  london_bridge_attack.save();
+  protest_london_eye.save();
+  big_ben_circus.save();
+  commemoration_day_dam.save();
+  strike_dam.save();
+  liberation_day_dom.save();
+  acrobat_show_sagrada.save();
+  demonstration_empire_state.save();
+  traffic_accident_times_square.save();
+
+  const london_bridge_points = [
     {
       "lat": 51.50896281828603,
       "lng": -0.08734345436096193,
@@ -3086,7 +3270,7 @@ async function exampleData() {
     },
   ];
 
-  const points2 = [
+  const london_eye_points = [
     {
       "lat": 51.50441518392566,
       "lng": -0.11436939239501955,
@@ -5674,23 +5858,23 @@ async function exampleData() {
     },
   ];
 
-  points1.forEach(p => {
+  london_bridge_points.forEach(p => {
     const point = new Point({
       lat: p.lat,
       lng: p.lng,
       val: p.val,
-      event: event1._id,
+      event: london_bridge_attack._id,
     });
 
     point.save();
   });
 
-  points2.forEach(p => {
+  london_eye_points.forEach(p => {
     const point = new Point({
       lat: p.lat,
       lng: p.lng,
       val: p.val,
-      event: event1._id,
+      event: protest_london_eye._id,
     });
 
     point.save();
