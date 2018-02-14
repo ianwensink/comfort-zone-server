@@ -1,3 +1,4 @@
+const moment = require('moment');
 const Location = require('./Location');
 const Event = require('./Event');
 const Point = require('./Point');
@@ -111,7 +112,7 @@ async function exampleData() {
 
   const london_bridge_attack = new Event({
     label: 'London Bridge attack January 12th',
-    timestamp: '2018-01-12T15:00:00.000Z',
+    timestamp: moment().hour(15).toISOString(),
     locations: [
       london_bridge._id,
     ],
@@ -123,7 +124,7 @@ async function exampleData() {
 
   const protest_london_eye = new Event({
     label: 'Protest at London Eye',
-    timestamp: '2018-02-07T07:00:00.000Z',
+    timestamp: moment().hour(19).add(-1, 'day').toISOString(),
     locations: [
       london_eye._id,
     ],
