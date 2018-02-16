@@ -30,8 +30,8 @@ async function exampleData() {
     key: 'big_ben',
     label: 'Big Ben',
     location: {
-      lat: 41.4036299,
-      lng: 2.1743558,
+      lat: 51.5007292,
+      lng: -0.2647011,
     },
   });
 
@@ -177,7 +177,7 @@ async function exampleData() {
       dom_utrecht._id,
     ],
     center: {
-      lat: '52.090242,',
+      lat: '52.090242',
       lng: '5.121500',
     },
   });
