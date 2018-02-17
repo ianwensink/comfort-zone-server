@@ -12,7 +12,7 @@ async function exampleData() {
     key: 'london_bridge',
     label: 'London Bridge',
     location: {
-      lat: 51.5078788,
+      lat: 50.5078788,
       lng: -0.0964868,
     },
   });
@@ -112,7 +112,7 @@ async function exampleData() {
 
   const london_bridge_attack = new Event({
     label: 'London Bridge attack January 12th',
-    timestamp: moment().hour(15).toISOString(),
+    timestamp: moment().hour(9).toISOString(),
     locations: [
       london_bridge._id,
     ],
@@ -124,7 +124,7 @@ async function exampleData() {
 
   const protest_london_eye = new Event({
     label: 'Protest at London Eye',
-    timestamp: moment().hour(19).add(-1, 'day').toISOString(),
+    timestamp: moment().hour(15).toISOString(),
     locations: [
       london_eye._id,
     ],
@@ -5880,6 +5880,8 @@ async function exampleData() {
 
     point.save();
   });
+
+  console.log('Protest london eye:', protest_london_eye._id);
 }
 
 module.exports = exampleData;

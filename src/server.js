@@ -67,7 +67,16 @@ app.get('/locations', (req, res) => {
 });
 
 app.post('/point', (req, res) => {
-  res.end('ERROR', 400);
+  const point = new Point({
+    lat: req.body.location.lat,
+    lng: req.body.location.lng,
+    event: req.body.event,
+    val: 9999999999999,
+  });
+
+  point.save();
+
+  res.end('OK', 200);
   // fs.readFile(pathToJson, 'utf8', (err, data) => {
   //   if(err) throw err;
   //   try {
