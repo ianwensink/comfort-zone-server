@@ -124,7 +124,7 @@ async function exampleData() {
 
   const protest_london_eye = new Event({
     label: 'Protest at London Eye',
-    timestamp: moment().hour(15).toISOString(),
+    timestamp: moment().hour(17).toISOString(),
     locations: [
       london_eye._id,
     ],
